@@ -41,12 +41,12 @@ export async function handleNewAppMention(
   if (thread_ts) {
     const messages = await getThread(channel, thread_ts, botUserId);
     const result = await generateResponse(messages, updateMessage);
-    updateMessage(result);
+    await updateMessage(result);
   } else {
     const result = await generateResponse(
       [{ role: "user", content: event.text }],
       updateMessage,
     );
-    updateMessage(result);
+    await updateMessage(result);
   }
 }
